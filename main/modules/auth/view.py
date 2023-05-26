@@ -15,9 +15,9 @@ class SignUp(Resource):
         """
         data = get_data_from_request_or_raise_validation_error(SignUpSchema, request.json)
         user, error_data = AuthUserController.create_new_user(data)
-        if not user:
+        if error_data:
             return make_response(jsonify(error_data), 409)
-        return make_response(jsonify(id=user.id), 201)
+        return make_response(jsonify(id=user["_id"]), 201)
 
 
 class Login(Resource):

@@ -1,4 +1,5 @@
-from main.db import BaseModel, db
+from mongoengine import StringField, IntField
+from main.db import BaseModel
 
 
 class TokenBlocklist(BaseModel):
@@ -6,8 +7,6 @@ class TokenBlocklist(BaseModel):
     This model is used to store revoked tokens.
     """
 
-    __tablename__ = "token_block_list"
-
-    jti = db.Column(db.String(36), nullable=False, index=True)
-    type = db.Column(db.String(16), nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
+    jti = StringField(required=True, max_length=36)
+    type = StringField(required=True, max_length=16)
+    user_id = StringField(required=True)

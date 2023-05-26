@@ -1,6 +1,5 @@
 import enum
 
-from sqlalchemy import or_
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from main.modules.auth.model import AuthUser
@@ -23,31 +22,31 @@ class AuthUserController:
     @classmethod
     def get_current_auth_user(cls) -> AuthUser:
         """
-        This function is used to get the auth user object of current logged-in user based on jwt
-        token in request headers.
-        :return AuthUser:
+        This function is used to get the AuthUser object of the currently logged-in user based on the JWT
+        token in the request headers.
+        :return: AuthUser object or None if not found
         """
         identity = JWTController.get_user_identity()
-        return AuthUser.query.filter_by(id=identity["user_id"]).first()
+        return AuthUser.objects(id=identity["user_id"]).first()
 
     @classmethod
-    def create_new_user(cls, user_data: dict) -> (AuthUser, dict):
+    def create_new_user(cls, user_data: dict) -> (dict, dict):
         """
-        This function is used to create new user in the auth user table. Also, it is used to check if
-        username or email already exists or not.
-        :param user_data:
-        :return (AuthUser, error_data):
+        This function is used to create a new user in the auth user collection. It also checks if
+        the username or email already exists or not.
+        :param user_data: Data for the new user
+        :return: Tuple containing (AuthUser, error_data)
         """
         error_data = {}
-        user_by_email = AuthUser.query.filter_by(email=user_data["email"]).first()
-        user_by_username = AuthUser.query.filter_by(username=user_data["username"]).first()
+        user_by_email = AuthUser.objects(email=user_data["email"]).first()
+        user_by_username = AuthUser.objects(username=user_data["username"]).first()
         if user_by_email or user_by_username:
             param = "username" if user_by_username else "email"
             error_data["error"] = f"user already exists with provided {param}"
         else:
             user_data["password"] = generate_password_hash(user_data["password"])
-            auth_user = AuthUser.create(user_data)
-            return auth_user, error_data
+            user = AuthUser.create(user_data, to_json=True)
+            return user, error_data
         return None, error_data
 
     @classmethod
@@ -70,19 +69,26 @@ class AuthUserController:
         """
         This function is used to get the token using email or username and password. It returns
         access_token and refresh_token.
-        :param login_data:
-        :return dict:
+        :param login_data: Login credentials
+        :return: Tuple containing (token, error message)
         """
         token = {}
         email_or_username = login_data.get("username") or login_data.get("email")
-        auth_user = AuthUser.query.filter(
-            or_(AuthUser.email == email_or_username, AuthUser.username == email_or_username)
-        ).first()
+        auth_user = AuthUser.filter(
+            {
+                "op_or": {
+                    "email": email_or_username,
+                    "username": email_or_username
+                }
+            },
+            return_all=False,
+            to_json=True
+        )
         if not auth_user:
             return token, f"user not found with {email_or_username}"
 
-        if check_password_hash(auth_user.password, login_data["password"]):
-            return JWTController.get_access_and_refresh_token(auth_user), ""
+        if check_password_hash(auth_user["password"], login_data["password"]):
+            return JWTController.get_access_and_refresh_token(auth_user["_id"], auth_user["role"]), ""
         return token, "wrong password"
 
     @classmethod

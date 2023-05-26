@@ -1,11 +1,13 @@
+import os
+
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
     get_jwt,
     get_jwt_identity,
 )
+from config import config_by_name
 
-from main.modules.auth.model import AuthUser
 from main.modules.jwt.model import TokenBlocklist
 
 
@@ -45,20 +47,29 @@ class JWTController:
         :return:
         """
         jti = jwt_payload["jti"]
-        token = TokenBlocklist.query.filter_by(jti=jti).scalar()
+        token = TokenBlocklist.filter({
+            "eq": {
+                "jti": jti
+            }
+        })
         return token is not None
 
     @classmethod
-    def get_access_and_refresh_token(cls, auth_user: AuthUser) -> dict:
+    def get_access_and_refresh_token(cls, user_id: type, role: str) -> dict:
         """
         This function is used to get the access and refresh token.
-        :param auth_user:
+        :param user_id:
+        :param role:
         :return:
         """
-        identity = {"user_id": auth_user.id, "role": auth_user.role}
+        identity = {"user_id": user_id, "role": role}
         return {
             "access_token": create_access_token(identity=identity),
             "refresh_token": create_refresh_token(identity=identity),
+            "expires": str(
+                int(config_by_name[os.getenv("FLASK_ENV") or "dev"]["JWT_ACCESS_TOKEN_EXPIRES"].total_seconds())
+            ),
+            "token_type": "bearer",
         }
 
     @classmethod
@@ -67,4 +78,7 @@ class JWTController:
         This function is used to get a new access token using refresh token.
         :return:
         """
-        return {"access_token": create_access_token(identity=cls.get_user_identity())}
+        return {
+            "access_token": create_access_token(identity=cls.get_user_identity()),
+            "expires": str(int(config_by_name[os.getenv("FLASK_ENV") or "dev"]["JWT_ACCESS_TOKEN_EXPIRES"].total_seconds())),
+        }
