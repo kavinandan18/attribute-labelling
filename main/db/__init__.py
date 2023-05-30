@@ -1,4 +1,5 @@
-from mongoengine import Document, DateTimeField, connect
+from mongoengine import Document, DateTimeField, connect, ReferenceField
+from pymongo import InsertOne
 from datetime import datetime
 from bson.objectid import ObjectId
 import json
@@ -17,7 +18,6 @@ connect(
 
 class BaseModel(Document):
     created_at = DateTimeField(default=datetime.now)
-    updated_at = DateTimeField(default=None, on_update=datetime.now)
 
     meta = {
         'abstract': True
@@ -33,19 +33,24 @@ class BaseModel(Document):
             if isinstance(value, ObjectId):
                 data[key] = str(value)
             elif isinstance(value, datetime):
-                data[key] = str(datetime)
+                data[key] = value.strftime("%Y-%m-%d %H:%M:%S")
             elif isinstance(value, dict):
                 self._convert_object_ids_to_strings(value)
             elif isinstance(value, list):
-                for item in value:
+                for index, item in enumerate(value):
                     if isinstance(item, dict):
                         self._convert_object_ids_to_strings(item)
+                    if isinstance(item, ObjectId):
+                        value[index] = str(item)
+                    if isinstance(item, datetime):
+                        value[index] = item.strftime("%Y-%m-%d %H:%M:%S")
 
     @classmethod
     def create(cls, data: dict, to_json=False):
         """
         This function is used to create the record.
         :param data: Data to create the record
+        :param to_json: Flag to get response in json
         :return: Created document
         """
         record = cls(**data)
@@ -53,6 +58,11 @@ class BaseModel(Document):
         if to_json:
             return record.to_json()
         return record
+
+    @classmethod
+    def add_created_at(cls, data):
+        data["created_at"] = datetime.now()
+        return data
 
     def update(self, data: dict):
         """
@@ -65,12 +75,28 @@ class BaseModel(Document):
         self.save()
 
     @classmethod
-    def delete(cls, **filters):
-        """
-        This function is used to delete the records based on filters.
-        :param filters: Filters to match the records to delete
-        """
-        cls.objects(**filters).delete()
+    def bulk_write(cls, data: list) -> int:
+        insert_operations = [InsertOne(cls.add_created_at(d)) for d in data]
+        bulk_write_result = cls._get_collection().bulk_write(insert_operations)
+        return bulk_write_result.inserted_count
+
+    @classmethod
+    def check_if_all_exists(cls, object_ids: list[ObjectId]) -> bool:
+        return cls.objects(id__in=object_ids).count() == len(object_ids)
+
+    @classmethod
+    def get_all(cls) -> list:
+        all_records = cls.objects()
+        return [record.to_json() for record in all_records]
+
+    @classmethod
+    def get_objects_with_filter(cls, **filters):
+        filtered_records = cls.objects(**filters)
+        return [record.to_json() for record in filtered_records]
+
+    @classmethod
+    def get_reference_fields(cls):
+        return [field_name for field_name, field in cls._fields.items() if isinstance(field, ReferenceField)]
 
     @classmethod
     def filter(cls, filters_dict, return_all=False, to_json=False):
@@ -86,7 +112,6 @@ class BaseModel(Document):
                 for i in range(1, len(or_filters)):
                     or_filter |= or_filters[i]
                 filters.append(or_filter)
-            # Add more operator conditions as needed
 
         queryset = cls.objects(*filters)
         if return_all:

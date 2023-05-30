@@ -76,20 +76,20 @@ class AuthUserController:
         email_or_username = login_data.get("username") or login_data.get("email")
         auth_user = AuthUser.filter(
             {
-                "op_or": {
-                    "email": email_or_username,
-                    "username": email_or_username
+                "substr": {
+                    "role": "%adm",
                 }
             },
             return_all=False,
             to_json=True
         )
-        if not auth_user:
-            return token, f"user not found with {email_or_username}"
-
-        if check_password_hash(auth_user["password"], login_data["password"]):
-            return JWTController.get_access_and_refresh_token(auth_user["_id"], auth_user["role"]), ""
-        return token, "wrong password"
+        return token, f"user not found with {email_or_username}"
+        # if not auth_user:
+        #     return token, f"user not found with {email_or_username}"
+        #
+        # if check_password_hash(auth_user["password"], login_data["password"]):
+        #     return JWTController.get_access_and_refresh_token(auth_user["_id"], auth_user["role"]), ""
+        # return token, "wrong password"
 
     @classmethod
     def logout(cls):

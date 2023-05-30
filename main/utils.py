@@ -6,11 +6,20 @@ from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema, ValidationError, fields
 from marshmallow.validate import Length
 from sqlalchemy import between, or_
+from bson.objectid import ObjectId
 
 from main.exceptions import CustomValidationError
 from main.logger import INFO, get_logger
 
 access_logger = get_logger("access", INFO)
+
+
+def is_valid_object_id(object_id: str):
+    try:
+        ObjectId(object_id)
+        return True
+    except (TypeError, ValueError):
+        return False
 
 
 def validate_substr(v: str):
@@ -80,17 +89,19 @@ class FiltersDataSchema(Schema):
     substr = fields.Dict(fields.String(), fields.String(validate=validate_substr), required=False)
 
 
-def get_data_from_request_or_raise_validation_error(validator_schema: type, data: dict) -> dict:
+def get_data_from_request_or_raise_validation_error(
+        validator_schema: type, data: dict, many: bool = False) -> dict or list:
     """
     This function is used to get the and validate it according to its validator schema and
     return request data in dict form. Also, it is used to raise ValidationError (A Custom
     Exception) and return a complete error msg.
     :param validator_schema:
     :param data:
+    :param many:
     :return:
     """
     try:
-        validator = validator_schema()
+        validator = validator_schema(many=many)
         data = validator.load(data)
     except ValidationError as err:
         raise CustomValidationError(err)

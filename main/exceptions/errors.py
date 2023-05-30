@@ -24,6 +24,6 @@ class RecordNotFoundError(Exception):
     This is the custom exception class to raise an error is record not found.
     """
 
-    def __init__(self):
-        super().__init__("Record not found!!!")
+    def __init__(self, error_msg=None):
+        super().__init__(error_msg or "Record not found!!!")
         self.status_code = 404
