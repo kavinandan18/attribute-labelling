@@ -1,5 +1,4 @@
 Flask==2.2.3
-Flask-SQLAlchemy==3.0.3
 marshmallow~=3.19.0
 PyJWT~=2.6.0
 Werkzeug~=2.2.3
@@ -12,7 +11,6 @@ pytest==7.3.0
 pytest-mock==3.10.0
 python-dotenv==1.0.0
 pytest-cov==4.0.0
-Flask-Migrate==4.0.4
 flask-restx==1.1.0
 pymongo~=4.3.3
 mongoengine==0.27.0
@@ -20,5 +18,3 @@ PyYAML~=6.0
 alembic~=1.10.3
 Flask-Caching==2.0.2
 redis==4.5.5
-
-pandas~=2.0.2

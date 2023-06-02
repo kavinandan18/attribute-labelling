@@ -1,0 +1,43 @@
+[
+    {
+        "family": "speaker",
+        "attribute_1": {
+            "name": "OS",
+            "type": "str",
+            "required": true
+        },
+        "attribute_2": {
+            "name": "Color",
+            "type": "str",
+            "required": true
+        },
+        "attribute_3": {
+            "name": "Weight",
+            "type": "str",
+            "required": false
+        }
+    },
+    {
+        "family": "tv",
+        "attribute_1": {
+        "name": "OS",
+        "required": true,
+        "type": "str"
+    },
+    "attribute_2": {
+        "name": "Model",
+        "required": true,
+        "type": "str"
+    },
+    "attribute_3": {
+        "name": "Prize",
+        "required": true,
+        "type": "str"
+    },
+    "attribute_4": {
+        "name": "Display Size",
+        "required": false,
+        "type": "str"
+    }
+    }
+]

@@ -8,7 +8,7 @@ from yaml.loader import Loader
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
-dotenv_path = os.path.join(os.path.expanduser("~"), "starter-kit.env")
+dotenv_path = os.path.join(os.path.dirname(basedir), ".env")
 load_dotenv(dotenv_path)
 
 env = os.getenv("FLASK_ENV") or "dev"
@@ -39,7 +39,7 @@ def serialize(cls):
 
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    DATABASE_URI = os.environ.get("DATABASE_URL")
     JWT_SECRET_KEY = os.environ.get("SECRET_KEY")
     JWT_ACCESS_TOKEN_EXPIRES = config.get("JWT_ACCESS_TOKEN_EXPIRES")
     JWT_REFRESH_TOKEN_EXPIRES = config.get("JWT_REFRESH_TOKEN_EXPIRES")
@@ -57,14 +57,14 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get("TESTING_DATABASE_URL")
+    DATABASE_URI = os.environ.get("TESTING_DATABASE_URL")
 
 
 class CacheConfig:
     CACHE_TYPE = "redis"
-    CACHE_REDIS_HOST = os.environ.get("CACHE_REDIS_HOST")
-    CACHE_REDIS_PORT = os.environ.get("CACHE_REDIS_PORT")
-    CACHE_REDIS_DB = os.environ.get("CACHE_REDIS_DB")
+    CACHE_REDIS_HOST = os.environ.get("CACHE_REDIS_HOST") or "localhost"
+    CACHE_REDIS_PORT = os.environ.get("CACHE_REDIS_PORT") or 6379
+    CACHE_REDIS_DB = os.environ.get("CACHE_REDIS_DB") or 0
     CACHE_DEFAULT_TIMEOUT = config.get("CACHE_DEFAULT_TIMEOUT")
 
 

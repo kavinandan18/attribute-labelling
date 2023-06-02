@@ -1,0 +1,31 @@
+[
+    {
+        "article_id": "000000000492338561",
+        "article_desc": "SANSUI 32 HD LED TV JSW32NSHD",
+        "brand": "LENOVO",
+        "brick": "LED TV 31\" TO 40\"",
+        "family": "laptop",
+        "sd": "SANSUI JSW32NSHD",
+        "RRP": 10990,
+        "launch_date": "2021-10-06T00:00:00.000Z",
+        "category": "128GB-STORAGE-8GB-RAM",
+        "type": "Electronics",
+        "OS": "Windows",
+        "attribute_3": "1.8 kg",
+        "attribute_4": "14 Inch"
+    },
+    {
+        "article_id": "000000000492338562",
+        "article_desc": "SANSUI 32 HD LED TV JSW32NSHD",
+        "brand": "REALME",
+        "brick": "LED TV 31\" TO 40\"",
+        "family": "mobile",
+        "sd": "SANSUI JSW32NSHD",
+        "RRP": 10990,
+        "launch_date": "2021-10-06T00:00:00.000Z",
+        "category": "128GB-STORAGE-6GB-RAM",
+        "type": "TestType1",
+        "OS": "Android",
+        "attribute_2": "Note 2"
+    }
+]

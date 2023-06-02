@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "f71a87b0-3e5a-40f5-a376-c9d966f7598f",
+		"name": "Product Attribute Labelling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18552477"
+	},
+	"item": [
+		{
+			"name": "Add Attribute Configs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"family\": \"laptop\",\r\n        \"attribute_1\": {\r\n            \"name\": \"OS\",\r\n            \"type\": \"str\",\r\n            \"required\": true\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Color\",\r\n            \"type\": \"str\",\r\n            \"required\": true\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"str\",\r\n            \"required\": false\r\n        }\r\n    },\r\n    {\r\n        \"family\": \"mobile\",\r\n        \"attribute_1\": {\r\n        \"name\": \"OS\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_2\": {\r\n        \"name\": \"Model\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_3\": {\r\n        \"name\": \"Prize\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_4\": {\r\n        \"name\": \"Display Size\",\r\n        \"required\": false,\r\n        \"type\": \"str\"\r\n    }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/configs",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"configs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Attribute Configs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/configs",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"configs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Attribute Config",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"attribute_1\": {\r\n        \"name\": \"OS\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_2\": {\r\n        \"name\": \"Model\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_3\": {\r\n        \"name\": \"Prize\",\r\n        \"required\": false,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_4\": {\r\n        \"name\": \"Display Size\",\r\n        \"required\": false,\r\n        \"type\": \"str\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/config/6479ad5543a10fcd751936ea",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"config",
+						"6479ad5543a10fcd751936ea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"article_id\": \"000000000492338561\",\r\n        \"article_desc\": \"SANSUI 32 HD LED TV JSW32NSHD\",\r\n        \"brand\": \"SAMSUNG\",\r\n        \"brick\": \"LED TV 31\\\" TO 40\\\"\",\r\n        \"family\": \"laptop\",\r\n        \"sd\": \"SANSUI JSW32NSHD\",\r\n        \"RRP\": 10990,\r\n        \"launch_date\": \"2021-10-06T00:00:00.000Z\",\r\n        \"category\": \"128GB-STORAGE-8GB-RAM\",\r\n        \"type\": \"Electronics\",\r\n        \"OS\": \"Windows\",\r\n        \"attribute_3\": \"1.5 kg\",\r\n        \"attribute_4\": \"14 Inch\"\r\n    },\r\n    {\r\n        \"article_id\": \"000000000492338562\",\r\n        \"article_desc\": \"SANSUI 32 HD LED TV JSW32NSHD\",\r\n        \"brand\": \"SAMSUNG\",\r\n        \"brick\": \"LED TV 31\\\" TO 40\\\"\",\r\n        \"family\": \"mobile\",\r\n        \"sd\": \"SANSUI JSW32NSHD\",\r\n        \"RRP\": 10990,\r\n        \"launch_date\": \"2021-10-06T00:00:00.000Z\",\r\n        \"category\": \"128GB-STORAGE-6GB-RAM\",\r\n        \"type\": \"TestType1\",\r\n        \"OS\": \"Android\",\r\n        \"attribute_2\": \"Galaxy 2\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/products",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/products?",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"products"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Model\": \"Test Model\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/product/64797a53e1c3fa58c1244bd4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"product",
+						"64797a53e1c3fa58c1244bd4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Distinct value of fields",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/products/brand",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"products",
+						"brand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Family Attribute Filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/products/family/mobile?",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"products",
+						"family",
+						"mobile"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Distinct value fields with family filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/products/family/mobile/OS",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"products",
+						"family",
+						"mobile",
+						"OS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Products from File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/products.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/upload/product",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"upload",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Attribute Config from File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/config_json.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pal/upload/config",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pal",
+						"upload",
+						"config"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
