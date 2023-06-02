@@ -109,6 +109,17 @@ def get_data_from_request_or_raise_validation_error(
     return data
 
 
+def get_list_of_dict_from_request_or_raise_validation_error(data: type):
+    """
+    To verify the request data type or to raise validation error.
+    :param data:
+    :return:
+    """
+    if isinstance(data, list) and all(isinstance(elem, dict) for elem in data):
+        return data
+    raise CustomValidationError("Invalid request data - data should be a list of dictionaries/objects")
+
+
 def log_user_access(response):
     """
     This function is used by the flask app server to log each and every request in access_logger

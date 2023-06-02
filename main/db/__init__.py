@@ -1,4 +1,4 @@
-from mongoengine import Document, DateTimeField, connect, ReferenceField
+from mongoengine import DateTimeField, connect, ReferenceField, DynamicDocument
 from pymongo import InsertOne
 from datetime import datetime
 from bson.objectid import ObjectId
@@ -16,7 +16,7 @@ connect(
 )
 
 
-class BaseModel(Document):
+class BaseModel(DynamicDocument):
     created_at = DateTimeField(default=datetime.now)
 
     meta = {
@@ -51,10 +51,11 @@ class BaseModel(Document):
         This function is used to create the record.
         :param data: Data to create the record
         :param to_json: Flag to get response in json
+        :param extend:
         :return: Created document
         """
         record = cls(**data)
-        record.save()
+        record.save(validate=False)
         if to_json:
             return record.to_json()
         return record
@@ -90,9 +91,21 @@ class BaseModel(Document):
         return [record.to_json() for record in all_records]
 
     @classmethod
-    def get_objects_with_filter(cls, **filters):
+    def get_objects_with_filter(cls, only_first=None, **filters):
         filtered_records = cls.objects(**filters)
+        if only_first:
+            record = filtered_records.first()
+            if record:
+                return record.to_json()
         return [record.to_json() for record in filtered_records]
+
+    @classmethod
+    def get_distinct(cls, field: str):
+        return cls.objects.distinct(field)
+
+    @classmethod
+    def get_distinct_with_filters(cls, field: str, **filters):
+        return cls.objects(**filters).distinct(field)
 
     @classmethod
     def get_reference_fields(cls):
@@ -120,3 +133,4 @@ class BaseModel(Document):
         if to_json:
             return queryset.first().to_json()
         return queryset.first()
+
