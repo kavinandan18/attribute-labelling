@@ -2,15 +2,13 @@ import os
 
 from flask import Flask
 from flask_cors import CORS
-from flask_migrate import Migrate
 
 from config import config_by_name
 from main.cache import cache
-# from main.db import db
 from main.exceptions import CUSTOM_EXCEPTIONS
 from main.exceptions.handlers import handle_exception
 from main.logger import ERROR, get_handler
-from main.modules import api, jwt
+from main.modules import api
 from main.utils import log_user_access
 
 
@@ -25,17 +23,7 @@ def get_app(env=None, config=None):
     app.config.update(config)
     CORS(app)
     api.init_app(app)
-    # db.init_app(app)
-    jwt.init_app(app)
     cache.init_app(app, config=config_by_name["cache"])
-
-    # Define the default connection
-    app.config['MONGODB_SETTINGS'] = {
-        'db': 'attribute_labelling',
-        'host': 'localhost',
-        'port': 27017
-    }
-    # Migrate(app, db)
 
     # register all custom exceptions
     for exc in CUSTOM_EXCEPTIONS:

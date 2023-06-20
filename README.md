@@ -1,4 +1,4 @@
-# Starter Kit using Python in Flask framework
+# Attribute-labelling
 
 ## Server Setup
 * Install Python 3.10
@@ -9,32 +9,12 @@ pip install -r requirements.txt
 ```
 * Create a file at **_/home_** path with name **_starter-kit.env_** with these keys.
 ```doctest
-DATABASE_URL=mysql+mysqlconnector://puneet:1m2p3k4n@localhost:3306/starter_kit
-TESTING_DATABASE_URL=mysql+mysqlconnector://puneet:1m2p3k4n@localhost:3306/starter_kit_test
+DATABASE_URL=mongodb://<HOST>:<PORT>/<DB_NAME>
+TESTING_DATABASE_URL=mongodb://<HOST>:<PORT>/<TEST_DB_NAME>
 SECRET_KEY=your secret key
 CACHE_REDIS_HOST=redis-host
 CACHE_REDIS_PORT=redis-port
 CACHE_REDIS_DB=0
-```
-* Migrate Database
-```commandline
-flask db init
-flask db migrate -m "migration message"
-flask db upgrade
-```
-If facing error like **Error: Target database is not up-to-date.**
-in **flask db migrate** command then run these commands.
-```commandline
-flask db stamp head
-flask db migrate -m "migration message"
-flask db upgrade
-```
-* Upgrade or Downgrade and particular migration version
-```commandline
-flask db upgrade 'migration_version'
- ```
-```commandline
-flask db downgrade 'migration_version'
 ```
 * Run Server
 ```commandline
