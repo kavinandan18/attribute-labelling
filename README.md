@@ -7,7 +7,7 @@
 ```commandline
 pip install -r requirements.txt
 ```
-* Create a file at **_/home_** path with name **_starter-kit.env_** with these keys.
+* Create a file at **_/root_** path with name **_.env_** with these keys.
 ```doctest
 DATABASE_URL=mongodb://<HOST>:<PORT>/<DB_NAME>
 TESTING_DATABASE_URL=mongodb://<HOST>:<PORT>/<TEST_DB_NAME>
