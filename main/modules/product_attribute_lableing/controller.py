@@ -195,13 +195,14 @@ class ProductController:
         return {"status": "success"}
 
     @classmethod
-    def get_distinct(cls, field: str) -> list:
+    def get_distinct(cls, field: str, **filters: dict) -> list:
         """
         To get distinct of a field.
         :param field:
+        :param filters:
         :return:
         """
-        distinct = Product.get_distinct_with_filters(field)
+        distinct = Product.get_distinct_with_filters(field, **filters)
         return [str(i) if isinstance(i, ObjectId) else i for i in distinct]
 
     @classmethod

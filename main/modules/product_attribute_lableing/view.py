@@ -42,7 +42,7 @@ class Products(Resource):
 
 class Distinct(Resource):
     def get(self, field: str):
-        return make_response(jsonify(ProductController.get_distinct(field)))
+        return make_response(jsonify(ProductController.get_distinct(field=field, **request.args)))
 
 
 class FamilyFilters(Resource):
