@@ -1,6 +1,6 @@
 from bson.objectid import ObjectId
 
-from main.exceptions import RecordNotFoundError
+from main.exceptions import CustomValidationError, RecordNotFoundError
 from main.modules.product_attribute_lableing.model import AttributeConfig, Product
 
 
@@ -74,6 +74,17 @@ class AttributeConfigController:
                     if value.get("required"):
                         required_attribute.append(key)
         return required_attribute
+
+    @classmethod
+    def get_editable_attributes(cls, family):
+        record = AttributeConfig.get_objects_with_filter(only_first=True, family=family)
+        editable_attributes = []
+        if record:
+            for key, value in record.items():
+                if isinstance(value, dict):
+                    if value.get("editable"):
+                        editable_attributes.append(key)
+        return editable_attributes
 
 
 class ProductController:
@@ -190,9 +201,15 @@ class ProductController:
             raise RecordNotFoundError(f"product_id '{product_id}' not found")
         mapping = AttributeConfigController.get_attribute_mapping_from_config(product.family)
         updated_data = cls.convert_keys_according_to_db(mapping, updated_data)
-        updated_data = cls.check_missing_attribute_in_product(product.to_json() | updated_data)
+        editable_attributes = AttributeConfigController.get_editable_attributes(product.family)
+        json_product = product.to_json()
+        required_attributes = [
+            key for key in AttributeConfigController.get_required_attributes(product.family) if key not in json_product
+        ]
+        cls.check_for_editable_and_required_attributes(editable_attributes, required_attributes, mapping, updated_data)
+        updated_data = cls.check_missing_attribute_in_product(json_product | updated_data)
         product.update(updated_data)
-        return {"status": "success"}
+        return {"status": "ok"}
 
     @classmethod
     def get_distinct(cls, field: str, **filters: dict) -> list:
@@ -231,3 +248,26 @@ class ProductController:
         field = cls.convert_field_name_according_to_db(mapping, field)
         distinct = Product.get_distinct_with_filters(field, **{"family": family})
         return [str(i) if isinstance(i, ObjectId) else i for i in distinct]
+
+    @classmethod
+    def check_for_editable_and_required_attributes(
+        cls, editable_attributes: list, required_attributes: list, mapping: dict, updated_data: dict
+    ):
+        """
+        To check editable and required attribute.
+        :param editable_attributes:
+        :param required_attributes:
+        :param mapping:
+        :param updated_data:
+        """
+        non_editable_attribute = [
+            key if key not in mapping else mapping[key] for key in updated_data if key not in editable_attributes
+        ]
+        if non_editable_attribute:
+            raise CustomValidationError(f"Non-editable attributes : ({non_editable_attribute})")
+
+        missing_required_attributes = [
+            key if key not in mapping else mapping[key] for key in required_attributes if key not in updated_data
+        ]
+        if missing_required_attributes:
+            raise CustomValidationError(f"Required attributes are missing : ({missing_required_attributes})")
