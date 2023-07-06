@@ -1,7 +1,11 @@
 from bson.objectid import ObjectId
+from marshmallow import ValidationError
 
 from main.exceptions import CustomValidationError, RecordNotFoundError
 from main.modules.product_attribute_lableing.model import AttributeConfig, Product
+from main.modules.product_attribute_lableing.schema_validator import (
+    AttributeConfigValidator,
+)
 
 
 class AttributeConfigController:
@@ -14,10 +18,17 @@ class AttributeConfigController:
         """
         inserted_ids = []
         errors = []
+        validator = AttributeConfigValidator()
         for attribute_config in attribute_configs:
             if AttributeConfig.get_objects_with_filter(family=attribute_config["family"]):
                 errors.append(f"family '{attribute_config['family']}' already exists")
                 continue
+            for i in attribute_config:
+                if i.startswith("attribute"):
+                    try:
+                        validator.load(attribute_config[i])
+                    except ValidationError as err:
+                        raise CustomValidationError(err)
             attribute_config = AttributeConfig.create(attribute_config, to_json=True)
             inserted_ids.append(attribute_config["_id"])
         return {"ids": inserted_ids, "errors": errors}
@@ -41,8 +52,15 @@ class AttributeConfigController:
         attribute_config = AttributeConfig.objects(id=attribute_config_id).first()
         if not attribute_config:
             raise RecordNotFoundError(f"attribute_config_id '{attribute_config_id}' not found")
+        validator = AttributeConfigValidator()
+        for i in attribute_config:
+            if i.startswith("attribute"):
+                try:
+                    validator.load(attribute_config[i])
+                except ValidationError as err:
+                    raise CustomValidationError(err)
         attribute_config.update(updated_attribute_config)
-        return {"status": "success"}
+        return {"status": "ok"}
 
     @classmethod
     def get_attribute_mapping_from_config(cls, family: str) -> dict:
@@ -260,11 +278,11 @@ class ProductController:
         :param mapping:
         :param updated_data:
         """
-        non_editable_attribute = [
-            key if key not in mapping else mapping[key] for key in updated_data if key not in editable_attributes
-        ]
-        if non_editable_attribute:
-            raise CustomValidationError(f"Non-editable attributes : ({non_editable_attribute})")
+        # non_editable_attribute = [
+        #     key if key not in mapping else mapping[key] for key in updated_data if key not in editable_attributes
+        # ]
+        # if non_editable_attribute:
+        #     raise CustomValidationError(f"Non-editable attributes : ({non_editable_attribute})")
 
         missing_required_attributes = [
             key if key not in mapping else mapping[key] for key in required_attributes if key not in updated_data

@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"family\": \"laptop\",\r\n        \"attribute_1\": {\r\n            \"name\": \"OS\",\r\n            \"type\": \"str\",\r\n            \"required\": true\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Color\",\r\n            \"type\": \"str\",\r\n            \"required\": true\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"str\",\r\n            \"required\": false\r\n        }\r\n    },\r\n    {\r\n        \"family\": \"mobile\",\r\n        \"attribute_1\": {\r\n        \"name\": \"OS\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_2\": {\r\n        \"name\": \"Model\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_3\": {\r\n        \"name\": \"Prize\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_4\": {\r\n        \"name\": \"Display Size\",\r\n        \"required\": false,\r\n        \"type\": \"str\"\r\n    }\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n        \"family\": \"laptop\",\r\n        \"attribute_1\": {\r\n            \"name\": \"Display Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Display Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Display\",\r\n            \"unit\": \"Inches\"\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Resolution\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_4\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Body\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        \"attribute_5\": {\r\n            \"name\": \"Graphics Coprocessor\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_6\": {\r\n            \"name\": \"Graphics Chipset Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_7\": {\r\n            \"name\": \"Graphics RAM Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_8\": {\r\n            \"name\": \"Graphics Card Interface\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_9\": {\r\n            \"name\": \"Number of USB 2.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_10\": {\r\n            \"name\": \"Number of USB 3.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_11\": {\r\n            \"name\": \"Number of Lithium Ion Cells\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Battery \"\r\n        },\r\n        \"attribute_12\": {\r\n            \"name\": \"Lithium Battery Energy Content\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Battery\",\r\n            \"unit\": \"Watt Hours\"\r\n        },\r\n        \"attribute_13\": {\r\n            \"name\": \"Processor Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_14\": {\r\n            \"name\": \"Processor Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_15\": {\r\n            \"name\": \"Processor Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Processor\",\r\n            \"unit\": \"GHz\"\r\n        },\r\n        \"attribute_16\": {\r\n            \"name\": \"RAM Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"unit\": \"GB\",\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_17\": {\r\n            \"name\": \"Memory Technology\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_18\": {\r\n            \"name\": \"Maximum Memory Supported\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"GB\"\r\n        },\r\n        \"attribute_19\": {\r\n            \"name\": \"Memory Clock Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"MHz\"\r\n        }\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"attribute_1\": {\r\n        \"name\": \"OS\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_2\": {\r\n        \"name\": \"Model\",\r\n        \"required\": true,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_3\": {\r\n        \"name\": \"Prize\",\r\n        \"required\": false,\r\n        \"type\": \"str\"\r\n    },\r\n    \"attribute_4\": {\r\n        \"name\": \"Display Size\",\r\n        \"required\": false,\r\n        \"type\": \"str\"\r\n    }\r\n}",
+					"raw": "{\r\n        \"family\": \"laptop\",\r\n        \"attribute_1\": {\r\n            \"name\": \"Display Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Display Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Display\",\r\n            \"unit\": \"Inches\"\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Resolution\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_4\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Body\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        \"attribute_5\": {\r\n            \"name\": \"Graphics Coprocessor\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_6\": {\r\n            \"name\": \"Graphics Chipset Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_7\": {\r\n            \"name\": \"Graphics RAM Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_8\": {\r\n            \"name\": \"Graphics Card Interface\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_9\": {\r\n            \"name\": \"Number of USB 2.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_10\": {\r\n            \"name\": \"Number of USB 3.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_11\": {\r\n            \"name\": \"Number of Lithium Ion Cells\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Battery\"\r\n        },\r\n        \"attribute_12\": {\r\n            \"name\": \"Battery Energy Content\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Battery\",\r\n            \"unit\": \"Watt Hours\"\r\n        },\r\n        \"attribute_13\": {\r\n            \"name\": \"Processor Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_14\": {\r\n            \"name\": \"Processor Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_15\": {\r\n            \"name\": \"Processor Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Processor\",\r\n            \"unit\": \"GHz\"\r\n        },\r\n        \"attribute_16\": {\r\n            \"name\": \"RAM Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"unit\": \"GB\",\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_17\": {\r\n            \"name\": \"Memory Technology\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_18\": {\r\n            \"name\": \"Maximum Memory Supported\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"GB\"\r\n        },\r\n        \"attribute_19\": {\r\n            \"name\": \"Memory Clock Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"MHz\"\r\n        }\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,7 +76,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/config/6479ad5543a10fcd751936ea",
+					"raw": "http://127.0.0.1:5000/pal/config/64a264b271a61263675597ba",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -88,7 +88,7 @@
 					"path": [
 						"pal",
 						"config",
-						"6479ad5543a10fcd751936ea"
+						"64a264b271a61263675597ba"
 					]
 				}
 			},
@@ -101,7 +101,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"article_id\": \"000000000492338561\",\r\n        \"article_desc\": \"SANSUI 32 HD LED TV JSW32NSHD\",\r\n        \"brand\": \"SAMSUNG\",\r\n        \"brick\": \"LED TV 31\\\" TO 40\\\"\",\r\n        \"family\": \"laptop\",\r\n        \"sd\": \"SANSUI JSW32NSHD\",\r\n        \"RRP\": 10990,\r\n        \"launch_date\": \"2021-10-06T00:00:00.000Z\",\r\n        \"category\": \"128GB-STORAGE-8GB-RAM\",\r\n        \"type\": \"Electronics\",\r\n        \"OS\": \"Windows\",\r\n        \"attribute_3\": \"1.5 kg\",\r\n        \"attribute_4\": \"14 Inch\"\r\n    },\r\n    {\r\n        \"article_id\": \"000000000492338562\",\r\n        \"article_desc\": \"SANSUI 32 HD LED TV JSW32NSHD\",\r\n        \"brand\": \"SAMSUNG\",\r\n        \"brick\": \"LED TV 31\\\" TO 40\\\"\",\r\n        \"family\": \"mobile\",\r\n        \"sd\": \"SANSUI JSW32NSHD\",\r\n        \"RRP\": 10990,\r\n        \"launch_date\": \"2021-10-06T00:00:00.000Z\",\r\n        \"category\": \"128GB-STORAGE-6GB-RAM\",\r\n        \"type\": \"TestType1\",\r\n        \"OS\": \"Android\",\r\n        \"attribute_2\": \"Galaxy 2\"\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n        \"article_id\": \"000000000492338584\",\r\n        \"article_desc\": \"Dell Vostro 3470 Laptop\",\r\n        \"brand\": \"Dell\",\r\n        \"brick\": \"Laptop\",\r\n        \"family\": \"laptop\",\r\n        \"sd\": \"Dell JSW32NSHDHY\",\r\n        \"Display Type\": \"LED\",\r\n        \"Display Size\": \"15.3\",\r\n        \"RRP\": 21000,\r\n        \"launch_date\": \"2021-11-06T00:00:00.000Z\",\r\n        \"category\": \"256GB-SSD-8GB-RAM\",\r\n        \"type\": \"Electronics\"\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -132,7 +132,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products?",
+					"raw": "http://127.0.0.1:5000/pal/products?brand=SAMSUNG&article_id=000000000492338564",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -147,8 +147,12 @@
 					],
 					"query": [
 						{
-							"key": "",
-							"value": null
+							"key": "brand",
+							"value": "SAMSUNG"
+						},
+						{
+							"key": "article_id",
+							"value": "000000000492338564"
 						}
 					]
 				}
@@ -170,7 +174,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/product/64797a53e1c3fa58c1244bd4",
+					"raw": "http://127.0.0.1:5000/pal/product/64a50afebbab581d850ea0d4",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -182,7 +186,7 @@
 					"path": [
 						"pal",
 						"product",
-						"64797a53e1c3fa58c1244bd4"
+						"64a50afebbab581d850ea0d4"
 					]
 				}
 			},
@@ -194,7 +198,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products/brand",
+					"raw": "http://127.0.0.1:5000/pal/products/category?brand=Apple",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -206,7 +210,13 @@
 					"path": [
 						"pal",
 						"products",
-						"brand"
+						"category"
+					],
+					"query": [
+						{
+							"key": "brand",
+							"value": "Apple"
+						}
 					]
 				}
 			},
@@ -218,7 +228,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products/family/mobile?",
+					"raw": "http://127.0.0.1:5000/pal/products/family/laptop?Weight=1.5 kg&article_id=000000000492338561",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -231,12 +241,16 @@
 						"pal",
 						"products",
 						"family",
-						"mobile"
+						"laptop"
 					],
 					"query": [
 						{
-							"key": "",
-							"value": null
+							"key": "Weight",
+							"value": "1.5 kg"
+						},
+						{
+							"key": "article_id",
+							"value": "000000000492338561"
 						}
 					]
 				}
@@ -249,7 +263,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products/family/mobile/OS",
+					"raw": "http://127.0.0.1:5000/pal/products/family/laptop/OS",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -262,7 +276,7 @@
 						"pal",
 						"products",
 						"family",
-						"mobile",
+						"laptop",
 						"OS"
 					]
 				}
@@ -280,7 +294,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/products.json"
+							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/test_product_json.json"
 						}
 					]
 				},
@@ -314,7 +328,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/config_json.json"
+							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/test_config_json.json"
 						}
 					]
 				},
