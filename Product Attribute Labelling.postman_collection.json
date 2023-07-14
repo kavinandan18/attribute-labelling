@@ -7,6 +7,28 @@
 	},
 	"item": [
 		{
+			"name": "Test Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://54.174.1.73:8000/pal",
+					"protocol": "http",
+					"host": [
+						"54",
+						"174",
+						"1",
+						"73"
+					],
+					"port": "8000",
+					"path": [
+						"pal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Add Attribute Configs",
 			"request": {
 				"method": "POST",
@@ -21,15 +43,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/configs",
+					"raw": "http://54.174.1.73:8000/pal/configs",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"54",
+						"174",
+						"1",
+						"73"
 					],
-					"port": "5000",
+					"port": "8000",
 					"path": [
 						"pal",
 						"configs"
@@ -44,15 +66,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/configs",
+					"raw": "http://54.174.1.73:8000/pal/configs",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"54",
+						"174",
+						"1",
+						"73"
 					],
-					"port": "5000",
+					"port": "8000",
 					"path": [
 						"pal",
 						"configs"
