@@ -17,7 +17,7 @@ from main.utils import get_data_from_request_or_raise_validation_error
 class TestServer(Resource):
     @staticmethod
     def get():
-        return make_response(jsonify(status="ok", msg="Server is running... test 2"))
+        return make_response(jsonify(status="ok", msg="Server is running... test 3"))
 
 
 class AttributeConfigs(Resource):
