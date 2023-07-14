@@ -14,6 +14,12 @@ from main.modules.product_attribute_lableing.schema_validator import (
 from main.utils import get_data_from_request_or_raise_validation_error
 
 
+class TestServer(Resource):
+    @staticmethod
+    def get():
+        return make_response(jsonify(status="ok", msg="Server is running..."))
+
+
 class AttributeConfigs(Resource):
     def post(self):
         data = get_data_from_request_or_raise_validation_error(AttributeConfigSchema, request.json, many=True)
@@ -81,6 +87,9 @@ class FileUpload(Resource):
 
 
 product_attribute_labelling_namespace = Namespace("pal", description="Product Attribute Labelling Operations")
+
+product_attribute_labelling_namespace.add_resource(TestServer, "/")
+
 product_attribute_labelling_namespace.add_resource(AttributeConfigs, "/configs")
 product_attribute_labelling_namespace.add_resource(AttributeConfig, "/config/<attribute_config_id>")
 
