@@ -86,7 +86,7 @@ class FileUpload(Resource):
         return make_response(jsonify(error=f"Invalid type '{file}'"))
 
 
-product_attribute_labelling_namespace = Namespace("pal", description="Product Attribute Labelling Operations")
+product_attribute_labelling_namespace = Namespace("pal-api", description="Product Attribute Labelling Operations")
 
 product_attribute_labelling_namespace.add_resource(TestServer, "/")
 
