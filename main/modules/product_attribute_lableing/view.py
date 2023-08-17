@@ -1,5 +1,6 @@
 import json
 
+import pandas as pd
 from flask import jsonify, make_response, request
 from flask_restx import Namespace, Resource
 
@@ -21,67 +22,92 @@ class TestServer(Resource):
 
 
 class AttributeConfigs(Resource):
-    def post(self):
+    @staticmethod
+    def post():
         data = get_data_from_request_or_raise_validation_error(AttributeConfigSchema, request.json, many=True)
         return make_response(jsonify(AttributeConfigController.add_attribute_configs(data)), 201)
 
-    def get(self):
+    @staticmethod
+    def get():
         return make_response(jsonify(AttributeConfigController.get_attribute_configs()), 200)
 
 
 class AttributeConfig(Resource):
-    def put(self, attribute_config_id: str):
+    @staticmethod
+    def put(attribute_config_id: str):
         return make_response(
             jsonify(AttributeConfigController.update_attribute_config(attribute_config_id, request.json))
         )
 
 
 class Products(Resource):
-    def post(self):
+    @staticmethod
+    def post():
         data = get_data_from_request_or_raise_validation_error(ProductSchema, request.json, many=True)
         return make_response(jsonify(ProductController.add_products(data)), 201)
 
-    def get(self):
+    @staticmethod
+    def get():
         products = ProductController.get_products(**request.args)
         return make_response(jsonify(products), 200)
 
 
 class Distinct(Resource):
-    def get(self, field: str):
+    @staticmethod
+    def get(field: str):
         return make_response(jsonify(ProductController.get_distinct(field=field, **request.args)))
 
 
 class FamilyFilters(Resource):
-    def get(self, family: str):
+    @staticmethod
+    def get(family: str):
         products = ProductController.get_family_products(family, **request.args)
         return make_response(jsonify(products), 200)
 
 
 class FamilyDistinct(Resource):
-    def get(self, family: str, field: str):
+    @staticmethod
+    def get(family: str, field: str):
         return make_response(jsonify(ProductController.get_family_distinct(family, field)))
 
 
 class Product(Resource):
-    def put(self, product_id: str):
+    @staticmethod
+    def put(product_id: str):
         return make_response(jsonify(ProductController.update_product(product_id, request.json)))
 
 
 class FileUpload(Resource):
-    def post(self, file_type: str):
+    @staticmethod
+    def post(file_type: str):
         file = request.files["file"]
 
-        if not file.filename.endswith(".json"):
+        if (
+            not file.filename.endswith(".json")
+            and not file.filename.endswith(".xlsx")
+            and not file.filename.endswith(".csv")
+        ):
             return make_response(jsonify({"error": "Invalid file extension."}), 400)
+        if file.filename.endswith(".json"):
+            data = json.load(file)
+        elif file.filename.endswith(".csv"):
+            df = pd.read_csv(file)
+            data = df.to_json(orient="records")
+            data = json.loads(data)
+        else:
+            df = pd.read_excel(file)
+            data = df.to_json(orient="records")
+            data = json.loads(data)
 
-        data = json.load(file)
         if file_type == "product":
             data = get_data_from_request_or_raise_validation_error(ProductSchema, data, many=True)
-            return make_response(jsonify(ProductController.add_products(data)), 201)
+            ids, errors = ProductController.add_products(data)
+            return make_response(jsonify(ids=ids, errors=errors), 201 if ids else 409)
 
         elif file_type == "config":
             data = get_data_from_request_or_raise_validation_error(AttributeConfigSchema, data, many=True)
-            return make_response(jsonify(AttributeConfigController.add_attribute_configs(data)), 201)
+            ids, errors = AttributeConfigController.add_attribute_configs(data)
+            return make_response(jsonify(ids=ids, errors=errors), 201 if ids else 409)
 
         return make_response(jsonify(error=f"Invalid type '{file}'"))
 

@@ -10,7 +10,7 @@ class AttributeConfigSchema(Schema):
 
 class ProductSchema(Schema):
     family = fields.Str(required=True)
-    article_id = fields.Str(required=True)
+    article_id = fields.Integer(required=True)
 
     class Meta:
         unknown = INCLUDE

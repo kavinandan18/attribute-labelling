@@ -12,17 +12,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://54.174.1.73:8000/pal",
+					"raw": "http://{{pal-api-host}}/pal-api",
 					"protocol": "http",
 					"host": [
-						"54",
-						"174",
-						"1",
-						"73"
+						"{{pal-api-host}}"
 					],
-					"port": "8000",
 					"path": [
-						"pal"
+						"pal-api"
 					]
 				}
 			},
@@ -35,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"family\": \"laptop\",\r\n        \"attribute_1\": {\r\n            \"name\": \"Display Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Display Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Display\",\r\n            \"unit\": \"Inches\"\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Resolution\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_4\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Body\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        \"attribute_5\": {\r\n            \"name\": \"Graphics Coprocessor\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_6\": {\r\n            \"name\": \"Graphics Chipset Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_7\": {\r\n            \"name\": \"Graphics RAM Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_8\": {\r\n            \"name\": \"Graphics Card Interface\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_9\": {\r\n            \"name\": \"Number of USB 2.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_10\": {\r\n            \"name\": \"Number of USB 3.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_11\": {\r\n            \"name\": \"Number of Lithium Ion Cells\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Battery \"\r\n        },\r\n        \"attribute_12\": {\r\n            \"name\": \"Lithium Battery Energy Content\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Battery\",\r\n            \"unit\": \"Watt Hours\"\r\n        },\r\n        \"attribute_13\": {\r\n            \"name\": \"Processor Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_14\": {\r\n            \"name\": \"Processor Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_15\": {\r\n            \"name\": \"Processor Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Processor\",\r\n            \"unit\": \"GHz\"\r\n        },\r\n        \"attribute_16\": {\r\n            \"name\": \"RAM Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"unit\": \"GB\",\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_17\": {\r\n            \"name\": \"Memory Technology\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_18\": {\r\n            \"name\": \"Maximum Memory Supported\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"GB\"\r\n        },\r\n        \"attribute_19\": {\r\n            \"name\": \"Memory Clock Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"MHz\"\r\n        }\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n        \"family\": \"WIRELESS PHONE\",\r\n        \"attribute_1\": {\r\n            \"name\": \"Display Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Display Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Display\",\r\n            \"unit\": \"Inches\"\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Resolution\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_4\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Body\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        \"attribute_5\": {\r\n            \"name\": \"Graphics Coprocessor\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_6\": {\r\n            \"name\": \"Graphics Chipset Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_7\": {\r\n            \"name\": \"Graphics RAM Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_8\": {\r\n            \"name\": \"Graphics Card Interface\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_9\": {\r\n            \"name\": \"Number of USB 2.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_10\": {\r\n            \"name\": \"Number of USB 3.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_11\": {\r\n            \"name\": \"Number of Lithium Ion Cells\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Battery\"\r\n        },\r\n        \"other_fields_to_display\": []\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,17 +39,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://54.174.1.73:8000/pal/configs",
+					"raw": "http://{{pal-api-host}}/pal-api/configs",
 					"protocol": "http",
 					"host": [
-						"54",
-						"174",
-						"1",
-						"73"
+						"{{pal-api-host}}"
 					],
-					"port": "8000",
 					"path": [
-						"pal",
+						"pal-api",
 						"configs"
 					]
 				}
@@ -66,17 +58,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://54.174.1.73:8000/pal/configs",
+					"raw": "http://{{pal-api-host}}/pal-api/configs",
 					"protocol": "http",
 					"host": [
-						"54",
-						"174",
-						"1",
-						"73"
+						"{{pal-api-host}}"
 					],
-					"port": "8000",
 					"path": [
-						"pal",
+						"pal-api",
 						"configs"
 					]
 				}
@@ -90,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"family\": \"laptop\",\r\n        \"attribute_1\": {\r\n            \"name\": \"Display Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Display Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Display\",\r\n            \"unit\": \"Inches\"\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Resolution\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_4\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Body\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        \"attribute_5\": {\r\n            \"name\": \"Graphics Coprocessor\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_6\": {\r\n            \"name\": \"Graphics Chipset Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_7\": {\r\n            \"name\": \"Graphics RAM Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_8\": {\r\n            \"name\": \"Graphics Card Interface\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Graphics\"\r\n        },\r\n        \"attribute_9\": {\r\n            \"name\": \"Number of USB 2.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_10\": {\r\n            \"name\": \"Number of USB 3.0 Ports\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Hardware\"\r\n        },\r\n        \"attribute_11\": {\r\n            \"name\": \"Number of Lithium Ion Cells\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Battery\"\r\n        },\r\n        \"attribute_12\": {\r\n            \"name\": \"Battery Energy Content\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Battery\",\r\n            \"unit\": \"Watt Hours\"\r\n        },\r\n        \"attribute_13\": {\r\n            \"name\": \"Processor Brand\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_14\": {\r\n            \"name\": \"Processor Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Processor\"\r\n        },\r\n        \"attribute_15\": {\r\n            \"name\": \"Processor Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Processor\",\r\n            \"unit\": \"GHz\"\r\n        },\r\n        \"attribute_16\": {\r\n            \"name\": \"RAM Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"unit\": \"GB\",\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_17\": {\r\n            \"name\": \"Memory Technology\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"attribute_18\": {\r\n            \"name\": \"Maximum Memory Supported\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"GB\"\r\n        },\r\n        \"attribute_19\": {\r\n            \"name\": \"Memory Clock Speed\",\r\n            \"type\": \"int\",\r\n            \"required\": false,\r\n            \"label\": \"Memory\",\r\n            \"unit\": \"MHz\"\r\n        }\r\n    }",
+					"raw": "{\r\n        \"family\": \"WIRELESS PHONE\",\r\n        \"attribute_1\": {\r\n            \"name\": \"Display Type\",\r\n            \"type\": \"str\",\r\n            \"required\": true,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_2\": {\r\n            \"name\": \"Display Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Display\",\r\n            \"unit\": \"Inches\"\r\n        },\r\n        \"attribute_3\": {\r\n            \"name\": \"Resolution\",\r\n            \"type\": \"str\",\r\n            \"required\": false,\r\n            \"label\": \"Display\"\r\n        },\r\n        \"attribute_4\": {\r\n            \"name\": \"Weight\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"label\": \"Body\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        \"attribute_16\": {\r\n            \"name\": \"RAM Size\",\r\n            \"type\": \"int\",\r\n            \"required\": true,\r\n            \"unit\": \"GB\",\r\n            \"label\": \"Memory\"\r\n        },\r\n        \"other_fields_to_display\": [\r\n            \"brand\",\r\n            \"brick\",\r\n            \"family\",\r\n            \"sd\",\r\n            \"RRP\",\r\n            \"launch_date\",\r\n            \"category\"\r\n        ]\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -98,19 +86,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/config/64a264b271a61263675597ba",
+					"raw": "http://{{pal-api-host}}/pal-api/config/64de0dcdc1b6227cfcba45e4",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"config",
-						"64a264b271a61263675597ba"
+						"64de0dcdc1b6227cfcba45e4"
 					]
 				}
 			},
@@ -131,17 +115,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products",
+					"raw": "http://{{pal-api-host}}/pal-api/products",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"products"
 					]
 				}
@@ -154,17 +134,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products?brand=SAMSUNG&article_id=000000000492338564",
+					"raw": "http://{{pal-api-host}}/pal-api/products?brand=SAMSUNG&article_id=000000000492338564",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"products"
 					],
 					"query": [
@@ -196,19 +172,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/product/64a50afebbab581d850ea0d4",
+					"raw": "http://{{pal-api-host}}/pal-api/product/64de0eb5c1b6227cfcba45e5",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"product",
-						"64a50afebbab581d850ea0d4"
+						"64de0eb5c1b6227cfcba45e5"
 					]
 				}
 			},
@@ -220,17 +192,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products/category?brand=Apple",
+					"raw": "http://{{pal-api-host}}/pal-api/products/category?brand=Apple",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"products",
 						"category"
 					],
@@ -250,17 +218,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products/family/laptop?Weight=1.5 kg&article_id=000000000492338561",
+					"raw": "http://{{pal-api-host}}/pal-api/products/family/laptop?Weight=1.5 kg&article_id=000000000492338561",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"products",
 						"family",
 						"laptop"
@@ -285,17 +249,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/products/family/laptop/OS",
+					"raw": "http://{{pal-api-host}}/pal-api/products/family/laptop/OS",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"products",
 						"family",
 						"laptop",
@@ -316,22 +276,18 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/C:/Users/PuneetDixit/Desktop/attribute-labelling/test_product_json.json"
+							"src": "/C:/Users/PuneetDixit/Downloads/wireless_articals.csv"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/upload/product",
+					"raw": "http://{{pal-api-host}}/pal-api/upload/product",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"upload",
 						"product"
 					]
@@ -355,17 +311,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pal/upload/config",
+					"raw": "http://{{pal-api-host}}/pal-api/upload/config",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{pal-api-host}}"
 					],
-					"port": "5000",
 					"path": [
-						"pal",
+						"pal-api",
 						"upload",
 						"config"
 					]

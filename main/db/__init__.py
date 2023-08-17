@@ -68,6 +68,20 @@ class BaseModel(DynamicDocument):
             setattr(self, k, v)
         self.save()
 
+    def replace(self, data: dict):
+        """
+        To replace the record.
+        :param data:
+        """
+        for field_name in self._fields_ordered:
+            if field_name != "id" and field_name not in data:
+                delattr(self, field_name)
+
+        for k, v in data.items():
+            setattr(self, k, v)
+
+        self.save()
+
     @classmethod
     def get_all(cls) -> list:
         """

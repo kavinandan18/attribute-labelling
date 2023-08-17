@@ -1,43 +1,47 @@
 [
     {
-        "family": "speaker",
+        "family": "WIRELESS PHONE",
         "attribute_1": {
-            "name": "OS",
+            "name": "Display Type",
             "type": "str",
-            "required": true
+            "required": true,
+            "label": "Display"
         },
         "attribute_2": {
-            "name": "Color",
-            "type": "str",
-            "required": true
+            "name": "Display Size",
+            "type": "int",
+            "required": true,
+            "label": "Display",
+            "unit": "Inches"
         },
         "attribute_3": {
-            "name": "Weight",
+            "name": "Resolution",
             "type": "str",
-            "required": false
-        }
-    },
-    {
-        "family": "tv",
-        "attribute_1": {
-        "name": "OS",
-        "required": true,
-        "type": "str"
-    },
-    "attribute_2": {
-        "name": "Model",
-        "required": true,
-        "type": "str"
-    },
-    "attribute_3": {
-        "name": "Prize",
-        "required": true,
-        "type": "str"
-    },
-    "attribute_4": {
-        "name": "Display Size",
-        "required": false,
-        "type": "str"
-    }
+            "required": false,
+            "label": "Display"
+        },
+        "attribute_4": {
+            "name": "Weight",
+            "type": "int",
+            "required": true,
+            "label": "Body",
+            "unit": "Kg"
+        },
+        "attribute_16": {
+            "name": "RAM Size",
+            "type": "int",
+            "required": true,
+            "unit": "GB",
+            "label": "Memory"
+        },
+        "other_fields_to_display": [
+            "brand",
+            "brick",
+            "family",
+            "sd",
+            "RRP",
+            "launch_date",
+            "category"
+        ]
     }
 ]

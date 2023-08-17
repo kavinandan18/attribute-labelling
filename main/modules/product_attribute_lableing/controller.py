@@ -10,7 +10,7 @@ from main.modules.product_attribute_lableing.schema_validator import (
 
 class AttributeConfigController:
     @classmethod
-    def add_attribute_configs(cls, attribute_configs: list):
+    def add_attribute_configs(cls, attribute_configs: list) -> tuple[list, list]:
         """
         To add attribute configs.
         :param attribute_configs:
@@ -31,7 +31,7 @@ class AttributeConfigController:
                         raise CustomValidationError(err)
             attribute_config = AttributeConfig.create(attribute_config, to_json=True)
             inserted_ids.append(attribute_config["_id"])
-        return {"ids": inserted_ids, "errors": errors}
+        return inserted_ids, errors
 
     @classmethod
     def get_attribute_configs(cls) -> list:
@@ -59,7 +59,7 @@ class AttributeConfigController:
                     validator.load(attribute_config[i])
                 except ValidationError as err:
                     raise CustomValidationError(err)
-        attribute_config.update(updated_attribute_config)
+        attribute_config.replace(updated_attribute_config)
         return {"status": "ok"}
 
     @classmethod
@@ -173,7 +173,7 @@ class ProductController:
         return product
 
     @classmethod
-    def add_products(cls, products: list[dict]) -> dict:
+    def add_products(cls, products: list[dict]) -> tuple[list, list]:
         """
         To convert field name according to db.
         :param products:
@@ -190,7 +190,7 @@ class ProductController:
             product = cls.convert_keys_according_to_db(mapping, product)
             cls.check_missing_attribute_in_product(product)
             inserted_ids.append(Product.create(product, to_json=True)["_id"])
-        return {"ids": inserted_ids, "errors": errors}
+        return inserted_ids, errors
 
     @classmethod
     def get_products(cls, **filters) -> list:

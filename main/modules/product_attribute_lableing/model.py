@@ -1,4 +1,4 @@
-from mongoengine import StringField
+from mongoengine import IntField, StringField
 
 from main.db import BaseModel
 
@@ -9,7 +9,7 @@ class Product(BaseModel):
     """
 
     family = StringField(required=True)
-    article_id = StringField(required=True, unique=True)
+    article_id = IntField(required=True, unique=True)
 
 
 class AttributeConfig(BaseModel):
