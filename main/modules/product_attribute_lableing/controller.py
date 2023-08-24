@@ -104,6 +104,13 @@ class AttributeConfigController:
                         editable_attributes.append(key)
         return editable_attributes
 
+    @classmethod
+    def get_field_options_from_config(cls, family, field) -> list:
+        record = AttributeConfig.get_objects_with_filter(only_first=True, family=family)
+        if record:
+            return record.get(field, {}).get("options", [])
+        return []
+
 
 class ProductController:
     @classmethod
@@ -265,7 +272,8 @@ class ProductController:
         mapping = AttributeConfigController.get_attribute_mapping_from_config(family)
         field = cls.convert_field_name_according_to_db(mapping, field)
         distinct = Product.get_distinct_with_filters(field, **{"family": family})
-        return [str(i) if isinstance(i, ObjectId) else i for i in distinct]
+        config_options = AttributeConfigController.get_field_options_from_config(family, field)
+        return list(set([str(i) if isinstance(i, ObjectId) else i for i in distinct] + config_options))
 
     @classmethod
     def check_for_editable_and_required_attributes(

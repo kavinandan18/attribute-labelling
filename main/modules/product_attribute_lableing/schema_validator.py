@@ -22,6 +22,7 @@ class AttributeConfigValidator(Schema):
     required = fields.Boolean(required=True)
     label = fields.Str(required=True)
     editable = fields.Boolean(required=False, default=False)
+    options = fields.List(type, required=False)
 
     class Meta:
         unknown = INCLUDE

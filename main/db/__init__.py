@@ -92,7 +92,7 @@ class BaseModel(DynamicDocument):
         return [record.to_json() for record in all_records]
 
     @classmethod
-    def get_objects_with_filter(cls, only_first=None, **filters) -> list:
+    def get_objects_with_filter(cls, only_first=None, **filters) -> (list[dict], dict):
         """
         To get objects with filter
         :param only_first:
@@ -102,8 +102,7 @@ class BaseModel(DynamicDocument):
         filtered_records = cls.objects(**filters)
         if only_first:
             record = filtered_records.first()
-            if record:
-                return record.to_json()
+            return record.to_json() if record else None
         return [record.to_json() for record in filtered_records]
 
     @classmethod
