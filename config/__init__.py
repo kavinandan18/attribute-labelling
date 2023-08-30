@@ -45,6 +45,8 @@ class Config:
     JWT_REFRESH_TOKEN_EXPIRES = config.get("JWT_REFRESH_TOKEN_EXPIRES")
     SECRET_KEY = os.environ.get("SECRET_KEY")
     PROPAGATE_EXCEPTIONS = config.get("PROPAGATE_EXCEPTIONS")
+    UMP_URL = os.environ.get("UMP_URL")
+    APPLICATION_NAME = os.environ.get("APPLICATION_NAME")
 
 
 class DevConfig(Config):

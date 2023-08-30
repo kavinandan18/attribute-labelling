@@ -4,6 +4,8 @@ import pandas as pd
 from flask import jsonify, make_response, request
 from flask_restx import Namespace, Resource
 
+from main.decorators.check_permissions import verify_permissions
+from main.decorators.verify_user import verify_user
 from main.modules.product_attribute_lableing.controller import (
     AttributeConfigController,
     ProductController,
@@ -18,11 +20,12 @@ from main.utils import get_data_from_request_or_raise_validation_error
 class TestServer(Resource):
     @staticmethod
     def get():
-        return make_response(jsonify(status="ok", msg="Server is running... test 3"))
+        return make_response(jsonify(status="ok", msg="Server is running..."))
 
 
 class AttributeConfigs(Resource):
     @staticmethod
+    @verify_user()
     def post():
         data = get_data_from_request_or_raise_validation_error(AttributeConfigSchema, request.json, many=True)
         return make_response(jsonify(AttributeConfigController.add_attribute_configs(data)), 201)
@@ -33,6 +36,8 @@ class AttributeConfigs(Resource):
 
 
 class AttributeConfig(Resource):
+    method_decorators = [verify_user()]
+
     @staticmethod
     def put(attribute_config_id: str):
         return make_response(
@@ -41,12 +46,16 @@ class AttributeConfig(Resource):
 
 
 class Products(Resource):
+    method_decorators = [verify_user()]
+
     @staticmethod
+    @verify_permissions({"Product": ["create"]})
     def post():
         data = get_data_from_request_or_raise_validation_error(ProductSchema, request.json, many=True)
         return make_response(jsonify(ProductController.add_products(data)), 201)
 
     @staticmethod
+    @verify_permissions({"Product": ["read"]})
     def get():
         products = ProductController.get_products(**request.args)
         return make_response(jsonify(products), 200)
@@ -72,6 +81,8 @@ class FamilyDistinct(Resource):
 
 
 class Product(Resource):
+    method_decorators = [verify_permissions({"Product": ["update"]}), verify_user()]
+
     @staticmethod
     def put(product_id: str):
         return make_response(jsonify(ProductController.update_product(product_id, request.json)))
@@ -89,9 +100,9 @@ class FileUpload(Resource):
         ):
             return make_response(jsonify({"error": "Invalid file extension."}), 400)
         if file.filename.endswith(".json"):
-            data = json.load(file)
+            data = json.load(file)  # noqa
         elif file.filename.endswith(".csv"):
-            df = pd.read_csv(file)
+            df = pd.read_csv(file)  # noqa
             data = df.to_json(orient="records")
             data = json.loads(data)
         else:
