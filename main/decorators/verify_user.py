@@ -12,7 +12,7 @@ def verify_user():
             if not bearer_token:
                 return make_response(jsonify({"error": "Access token not found"}), 401)
             resp = requests.get(
-                f"{current_app.config.get('UMP_URL')}/auth/user-permissions", headers={"Authorization": bearer_token}
+                f"{current_app.config.get('UMP_URL')}/user-permissions", headers={"Authorization": bearer_token}
             )
             json_resp = resp.json()
             if resp.status_code != 200:
